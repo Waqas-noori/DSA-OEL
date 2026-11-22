@@ -3,6 +3,7 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <sstream>
 #include "Product.cpp"
 using namespace std;
 
@@ -83,9 +84,22 @@ bool containsIgnoreCase(const string& text, const string& part) {
 }
 
 double readNum(const string& prompt) {
+	string line;
 	double v;
-	cout << prompt; cin >> v;
-	return v;
+	while (true) {
+		cout << prompt;
+		if (!getline(cin, line)) exit(0);          // input stream closed
+		istringstream iss(line);
+		if ((iss >> v) && (iss >> ws).eof()) return v;   // a number and nothing else
+		cout << "Invalid input. Enter a number.\n";
+	}
+}
+
+bool confirm(const string& prompt) {
+	string line;
+	cout << prompt << " (y/n): ";
+	getline(cin, line);
+	return !line.empty() && (line[0] == 'y' || line[0] == 'Y');
 }
 
 // Keep asking until the number is between lo and hi (inclusive).
@@ -100,14 +114,12 @@ double readRange(const string& prompt, double lo, double hi) {
 
 string readLine(const string& prompt) {
 	string s;
-	cout << prompt; getline(cin, s);
+	do {
+		cout << prompt;
+		getline(cin, s);
+		if (s.empty()) cout << "Input cannot be empty.\n";
+	} while (s.empty());
 	return s;
-}
-
-bool confirm(const string& prompt) {
-	char c;
-	cout << prompt << " (y/n): "; cin >> c;
-	return c == 'y' || c == 'Y';
 }
 
 string formatTime(time_t t) {

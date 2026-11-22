@@ -6,7 +6,7 @@
 using namespace std;
 
 static void printMenu() {
-	cout << "\n===== INVENTORY MANAGEMENT SYSTEM =====\n"
+	cout << "\n <INVENTORY MANAGEMENT SYSTEM> \n"
 		<< " 1. Add product\n"
 		<< " 2. Update product\n"
 		<< " 3. Delete product\n"
