@@ -1,4 +1,3 @@
-// main.cpp - menu loop that coordinates all modules (Integration lead)
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "StockOps.cpp"
@@ -47,7 +46,7 @@ int main() {
 		case 0:  break;
 		default: cout << "Invalid choice.\n";
 		}
-		saveAll(inv);                     // data is saved after every operation
+		saveAll(inv);// data is saved after every operation
 	} while (choice != 0);
 
 	cout << "Goodbye.\n";

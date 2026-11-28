@@ -154,6 +154,11 @@ void addProduct(Inventory& inv) {
 
 	string name = readLine("Enter Name: ");
 
+	for (Product* p = inv.products.first(); p; p = p->next) if (p->name == name) {
+		cout << "Name already exists\n";
+		return;
+	}
+
 	int q = readRange("Enter Quantity (0 to 1000000): ", 0, MAX_QTY);
 	double pr = readRange("Enter Price (0 to 10000000): ", 0, MAX_PRICE);
 	int th = readRange("Enter Low-stock limit (0 to 1000000): ", 0, MAX_QTY);
